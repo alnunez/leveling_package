@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 10)
+    (drawings 16)
     (tracks 0)
     (zones 0)
     (modules 3)
@@ -355,6 +355,12 @@
     )
   )
 
+  (gr_line (start 31.07107 24) (end 57.07107 50) (layer Edge.Cuts) (width 0.05))
+  (gr_line (start 24 31.07107) (end 31.07107 24) (layer Edge.Cuts) (width 0.05))
+  (gr_line (start 50 57.07107) (end 24 31.07107) (layer Edge.Cuts) (width 0.05))
+  (gr_line (start 24 31.07107) (end 74 81.07107) (layer F.SilkS) (width 0.12))
+  (gr_line (start 31.07107 24) (end 74 66.92893) (layer F.SilkS) (width 0.12))
+  (gr_line (start 24 24) (end 74 74) (layer F.SilkS) (width 0.12))
   (gr_line (start 116.92893 24) (end 124 31.07107) (layer Edge.Cuts) (width 0.05))
   (gr_line (start 124 31.07107) (end 98 57.07107) (layer Edge.Cuts) (width 0.05))
   (gr_line (start 90.92893 50) (end 116.92893 24) (layer Edge.Cuts) (width 0.05))
@@ -363,7 +369,7 @@
   (gr_line (start 74 74) (end 124 24) (layer F.SilkS) (width 0.12))
   (gr_line (start 50 98) (end 98 98) (layer Edge.Cuts) (width 0.05))
   (gr_line (start 98 57.07107) (end 98 98) (layer Edge.Cuts) (width 0.05))
-  (gr_line (start 50 50) (end 50 98) (layer Edge.Cuts) (width 0.05))
-  (gr_line (start 50 50) (end 90.92893 50) (layer Edge.Cuts) (width 0.05))
+  (gr_line (start 50 57.07107) (end 50 98) (layer Edge.Cuts) (width 0.05))
+  (gr_line (start 57.07107 50) (end 90.92893 50) (layer Edge.Cuts) (width 0.05))
 
 )
