@@ -14,36 +14,244 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Connector:Conn_01x16_Male J1
+L Connector:Conn_01x16_Male J2
 U 1 1 603EA836
 P 3650 3350
-F 0 "J1" H 3300 3350 50  0000 C CNN
-F 1 "Conn_01x16_Male" H 3150 3200 50  0000 C CNN
+F 0 "J2" H 3300 3350 50  0000 C CNN
+F 1 "Conn_01x16_Male" H 3300 3150 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x16_P2.54mm_Vertical" H 3650 3350 50  0001 C CNN
 F 3 "~" H 3650 3350 50  0001 C CNN
 	1    3650 3350
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector:Conn_01x16_Male J2
-U 1 1 603ECB79
-P 5100 3350
-F 0 "J2" H 4950 3350 50  0000 R CNN
-F 1 "Conn_01x16_Male" H 5000 3200 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x16_P2.54mm_Vertical" H 5100 3350 50  0001 C CNN
-F 3 "~" H 5100 3350 50  0001 C CNN
-	1    5100 3350
 	-1   0    0    -1  
 $EndComp
 $Comp
-L LED:WS2812B D?
+L Connector:Conn_01x16_Male J1
+U 1 1 603ECB79
+P 5100 3350
+F 0 "J1" H 4700 3350 50  0000 R CNN
+F 1 "Conn_01x16_Male" H 5000 3150 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x16_P2.54mm_Vertical" H 5100 3350 50  0001 C CNN
+F 3 "~" H 5100 3350 50  0001 C CNN
+	1    5100 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED:WS2812B D1
 U 1 1 603F60BF
 P 3450 5000
-F 0 "D?" H 3794 5046 50  0000 L CNN
-F 1 "WS2812B" H 3794 4955 50  0000 L CNN
+F 0 "D1" H 3794 5046 50  0000 L CNN
+F 1 "WS2812B" H 3000 4650 50  0000 L CNN
 F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 3500 4700 50  0001 L TNN
 F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 3550 4625 50  0001 L TNN
 	1    3450 5000
 	1    0    0    -1  
 $EndComp
+$Comp
+L Switch:SW_Push SW1
+U 1 1 603FB7A3
+P 6100 3300
+F 0 "SW1" H 6100 3585 50  0000 C CNN
+F 1 "SW_Push" H 6100 3494 50  0000 C CNN
+F 2 "Button_Switch_THT:SW_PUSH_6mm" H 6100 3500 50  0001 C CNN
+F 3 "~" H 6100 3500 50  0001 C CNN
+	1    6100 3300
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 603F0D7F
+P 5850 3400
+F 0 "R1" H 5920 3446 50  0000 L CNN
+F 1 "R" H 5920 3355 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 5780 3400 50  0001 C CNN
+F 3 "~" H 5850 3400 50  0001 C CNN
+	1    5850 3400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5300 3650 5850 3650
+Wire Wire Line
+	5850 3650 5850 3550
+Wire Wire Line
+	5850 3250 5850 2750
+Wire Wire Line
+	5850 2750 5300 2750
+Wire Wire Line
+	5850 3650 6100 3650
+Wire Wire Line
+	6100 3650 6100 3500
+Connection ~ 5850 3650
+Wire Wire Line
+	6100 3100 6100 2650
+Wire Wire Line
+	6100 2650 5500 2650
+Wire Wire Line
+	3450 4700 3450 4500
+Wire Wire Line
+	3450 4500 2550 4500
+Wire Wire Line
+	2550 4500 2550 2650
+Wire Wire Line
+	2550 2650 2800 2650
+Wire Wire Line
+	3450 5300 3450 5500
+Wire Wire Line
+	3450 5500 2350 5500
+Wire Wire Line
+	2350 5500 2350 2750
+Wire Wire Line
+	2350 2750 3450 2750
+$Comp
+L Transistor_FET:BSS138 Q1
+U 1 1 6040B788
+P 3050 3650
+F 0 "Q1" V 3299 3650 50  0000 C CNN
+F 1 "BSS138" V 3390 3650 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 3250 3575 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/BS/BSS138.pdf" H 3050 3650 50  0001 L CNN
+	1    3050 3650
+	0    -1   1    0   
+$EndComp
+Text Label 4900 2650 0    50   ~ 0
+3V3
+Text Label 3750 2650 0    50   ~ 0
+5V
+Text Label 3750 2750 0    50   ~ 0
+GND
+Text Label 4900 2800 0    50   ~ 0
+GND
+Text Label 4850 3700 0    50   ~ 0
+IO33
+Text Label 3750 3750 0    50   ~ 0
+IO18
+Wire Wire Line
+	3450 3750 3300 3750
+Wire Wire Line
+	3150 5000 2650 5000
+Wire Wire Line
+	2650 5000 2650 3750
+Wire Wire Line
+	2650 3750 2800 3750
+$Comp
+L Device:R R3
+U 1 1 6043545A
+P 3300 3350
+F 0 "R3" H 3100 3400 50  0000 L CNN
+F 1 "R" H 3150 3300 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 3230 3350 50  0001 C CNN
+F 3 "~" H 3300 3350 50  0001 C CNN
+	1    3300 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3300 3500 3300 3750
+Connection ~ 3300 3750
+Wire Wire Line
+	3300 3750 3250 3750
+Wire Wire Line
+	3300 3200 3300 3100
+Wire Wire Line
+	3300 2500 5500 2500
+Wire Wire Line
+	5500 2500 5500 2650
+Connection ~ 5500 2650
+Wire Wire Line
+	5500 2650 5300 2650
+Wire Wire Line
+	3300 3100 3050 3100
+Wire Wire Line
+	3050 3100 3050 3450
+Connection ~ 3300 3100
+Wire Wire Line
+	3300 3100 3300 2500
+$Comp
+L Device:R R2
+U 1 1 604443A8
+P 2800 3350
+F 0 "R2" H 2600 3400 50  0000 L CNN
+F 1 "R" H 2600 3300 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2730 3350 50  0001 C CNN
+F 3 "~" H 2800 3350 50  0001 C CNN
+	1    2800 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2800 3500 2800 3750
+Connection ~ 2800 3750
+Wire Wire Line
+	2800 3750 2850 3750
+Wire Wire Line
+	2800 3200 2800 2650
+Connection ~ 2800 2650
+Wire Wire Line
+	2800 2650 3450 2650
+$Comp
+L LED:WS2812B D2
+U 1 1 60457101
+P 4150 5000
+F 0 "D2" H 4494 5046 50  0000 L CNN
+F 1 "WS2812B" H 3650 4650 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 4200 4700 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 4250 4625 50  0001 L TNN
+	1    4150 5000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3750 5000 3850 5000
+Wire Wire Line
+	3450 5500 4150 5500
+Wire Wire Line
+	4150 5500 4150 5300
+Connection ~ 3450 5500
+Wire Wire Line
+	3450 4500 4150 4500
+Wire Wire Line
+	4150 4500 4150 4700
+Connection ~ 3450 4500
+$Comp
+L LED:WS2812B D?
+U 1 1 6045C053
+P 4900 5000
+F 0 "D?" H 5244 5046 50  0000 L CNN
+F 1 "WS2812B" H 4400 4650 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 4950 4700 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 5000 4625 50  0001 L TNN
+	1    4900 5000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4150 4500 4900 4500
+Wire Wire Line
+	4900 4500 4900 4700
+Connection ~ 4150 4500
+Wire Wire Line
+	4900 5300 4900 5500
+Wire Wire Line
+	4900 5500 4150 5500
+Connection ~ 4150 5500
+Wire Wire Line
+	4450 5000 4600 5000
+$Comp
+L LED:WS2812B D?
+U 1 1 6045F1B5
+P 5600 5000
+F 0 "D?" H 5944 5046 50  0000 L CNN
+F 1 "WS2812B" H 5100 4650 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 5650 4700 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 5700 4625 50  0001 L TNN
+	1    5600 5000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5600 4700 5600 4500
+Wire Wire Line
+	5600 4500 4900 4500
+Connection ~ 4900 4500
+Wire Wire Line
+	5600 5300 5600 5500
+Wire Wire Line
+	5600 5500 4900 5500
+Connection ~ 4900 5500
+Wire Wire Line
+	5200 5000 5300 5000
 $EndSCHEMATC
