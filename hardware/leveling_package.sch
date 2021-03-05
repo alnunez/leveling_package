@@ -75,7 +75,7 @@ Wire Wire Line
 Wire Wire Line
 	5850 3250 5850 2750
 Wire Wire Line
-	5850 2750 5300 2750
+	5850 2750 5600 2750
 Wire Wire Line
 	5850 3650 6100 3650
 Wire Wire Line
@@ -100,7 +100,7 @@ Wire Wire Line
 Wire Wire Line
 	2350 5500 2350 2750
 Wire Wire Line
-	2350 2750 3450 2750
+	2350 2750 3150 2750
 $Comp
 L Transistor_FET:BSS138 Q1
 U 1 1 6040B788
@@ -415,4 +415,16 @@ Wire Wire Line
 Connection ~ 9800 5500
 Wire Wire Line
 	10100 5000 10200 5000
+Wire Wire Line
+	3150 2750 3150 2400
+Wire Wire Line
+	3150 2400 5600 2400
+Wire Wire Line
+	5600 2400 5600 2750
+Connection ~ 3150 2750
+Wire Wire Line
+	3150 2750 3450 2750
+Connection ~ 5600 2750
+Wire Wire Line
+	5600 2750 5300 2750
 $EndSCHEMATC
