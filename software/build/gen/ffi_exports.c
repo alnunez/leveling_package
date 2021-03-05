@@ -91,6 +91,10 @@ bool  mgos_i2c_write_reg_w(void *, int, int, int);
 bool  mgos_is_inbound(void *);
 void  mgos_log(char *, int, int, char *);
 void * mgos_mjs_get_config();
+void  mgos_neopixel_clear(void *);
+void * mgos_neopixel_create(int, int, int);
+void  mgos_neopixel_set(void *, int, int, int, int);
+void  mgos_neopixel_show(void *);
 bool  mgos_pwm_set(int, int, float);
 void * mgos_rpc_add_handler(void *, void (*)(void *, char *, char *, void *), void *);
 bool  mgos_rpc_call(char *, char *, char *, void (*)(char *, int, char *, void *), void *);
@@ -215,6 +219,10 @@ const struct mgos_ffi_export ffi_exports[] = {
   {"mgos_is_inbound", mgos_is_inbound},
   {"mgos_log", mgos_log},
   {"mgos_mjs_get_config", mgos_mjs_get_config},
+  {"mgos_neopixel_clear", mgos_neopixel_clear},
+  {"mgos_neopixel_create", mgos_neopixel_create},
+  {"mgos_neopixel_set", mgos_neopixel_set},
+  {"mgos_neopixel_show", mgos_neopixel_show},
   {"mgos_pwm_set", mgos_pwm_set},
   {"mgos_rpc_add_handler", mgos_rpc_add_handler},
   {"mgos_rpc_call", mgos_rpc_call},
@@ -256,4 +264,4 @@ const struct mgos_ffi_export ffi_exports[] = {
   {"strdup", strdup},
   {"temprature_sens_read", temprature_sens_read},
 };
-const int ffi_exports_cnt = 122;
+const int ffi_exports_cnt = 126;

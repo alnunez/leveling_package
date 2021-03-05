@@ -17,6 +17,7 @@ extern bool mgos_core_init(void);
 extern bool mgos_i2c_init(void);
 extern bool mgos_mbedtls_init(void);
 extern bool mgos_mjs_init(void);
+extern bool mgos_neopixel_init(void);
 extern bool mgos_pwm_init(void);
 extern bool mgos_rpc_common_init(void);
 extern bool mgos_rpc_service_config_init(void);
@@ -59,6 +60,9 @@ const struct mgos_lib_info mgos_libs_info[] = {
 
     // "mjs". deps: [ "core" ]
     {.name = "mjs", .version = "1.0", .init = mgos_mjs_init},
+
+    // "neopixel". deps: [ "core" ]
+    {.name = "neopixel", .version = "1.0", .init = mgos_neopixel_init},
 
     // "pwm". deps: [ "core" ]
     {.name = "pwm", .version = "1.0", .init = mgos_pwm_init},

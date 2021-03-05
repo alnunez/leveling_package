@@ -40,6 +40,7 @@ libs:
   
   - origin: https://github.com/mongoose-os-libs/i2c
   - origin: https://github.com/mongoose-os-libs/pwm
+  - origin: https://github.com/mongoose-os-libs/neopixel
   
 #  - origin: https://github.com/mongoose-os-libs/imu
 

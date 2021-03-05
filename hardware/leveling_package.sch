@@ -392,4 +392,27 @@ Wire Wire Line
 Connection ~ 9100 4500
 Wire Wire Line
 	9400 5000 9500 5000
+$Comp
+L LED:WS2812B D11
+U 1 1 6041B3FF
+P 10500 5000
+F 0 "D11" H 10844 5046 50  0000 L CNN
+F 1 "WS2812B" H 10000 4650 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 10550 4700 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 10600 4625 50  0001 L TNN
+	1    10500 5000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9800 4500 10500 4500
+Wire Wire Line
+	10500 4500 10500 4700
+Connection ~ 9800 4500
+Wire Wire Line
+	9800 5500 10500 5500
+Wire Wire Line
+	10500 5500 10500 5300
+Connection ~ 9800 5500
+Wire Wire Line
+	10100 5000 10200 5000
 $EndSCHEMATC

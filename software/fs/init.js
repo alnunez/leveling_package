@@ -3,7 +3,9 @@ load('api_i2c.js');
 load('api_timer.js');
 load('api_pwm.js');
 load('api_gpio.js');
+load('api_neopixel.js');
 load('mpu60x0_h.js');
+
 
 print('***********************');
 print('Gravity by BeSense 2021');
@@ -24,6 +26,9 @@ let ledM2 = 33;
 let ledM3 = 25;
 let ledM4 = 26;
 
+let pixelPin=18;
+let pixelNum=3;
+let pixelColorOrder = NeoPixel.GRB;
 
 GPIO.set_mode(ledM4, GPIO.MODE_OUTPUT);
 GPIO.set_pull(ledM4, GPIO.PULL_NONE)
@@ -34,6 +39,8 @@ GPIO.set_pull(ledM2, GPIO.PULL_NONE)
 GPIO.set_mode(ledM1, GPIO.MODE_OUTPUT);
 GPIO.set_pull(ledM1, GPIO.PULL_NONE)
 
+
+let pixelstrip = NeoPixel.create(pixelPin, pixelNum, pixelColorOrder);
 
 print('Detectinc I2C MPU60X0...');
 let i2cdata=I2C.readRegB(i2chandler, MGOS_MPU60X0_DEFAULT_I2CADDR, MGOS_MPU60X0_REG_WHO_AM_I);
@@ -96,6 +103,12 @@ Timer.set(accelreadperiod, Timer.REPEAT, function() {
   	GPIO.blink(ledM3, 0, 0)
   	GPIO.write(ledM4, 1);
   	GPIO.write(ledM3, 1);
+  	
+  	pixelstrip.clear();
+    pixelstrip.setPixel(1, 255, 0, 0);
+    pixelstrip.setPixel(2, 255, 0, 0);
+    pixelstrip.show();
+
   }  
   
   if (angulox > ComfortAngle)
@@ -103,6 +116,10 @@ Timer.set(accelreadperiod, Timer.REPEAT, function() {
   	GPIO.blink(ledM4, ledblinkperiod, ledblinkperiod)
   	GPIO.blink(ledM3, 0, 0);
   	GPIO.write(ledM3, 0);
+  	pixelstrip.clear();
+    pixelstrip.setPixel(1, 0, 255, 0);
+    pixelstrip.setPixel(2, 0, 0, 255);
+    pixelstrip.show();
   }  
   
   if (angulox < (-1* ComfortAngle) )
@@ -110,6 +127,10 @@ Timer.set(accelreadperiod, Timer.REPEAT, function() {
   	GPIO.blink(ledM3, ledblinkperiod, ledblinkperiod)
   	GPIO.blink(ledM4, 0, 0);
   	GPIO.write(ledM4, 0);
+  	pixelstrip.clear();
+    pixelstrip.setPixel(1, 0, 0, 255);
+    pixelstrip.setPixel(2, 0, 225, 0);
+    pixelstrip.show();
   }  
 
 // Led logic for Y axis
@@ -149,3 +170,9 @@ Timer.set(1000, Timer.REPEAT, function() {
   //print('duty M4',dutym4);
   
 }, null);
+
+//pixelstrip.clear();
+//pixelstrip.setPixel(1, 12, 34, 56);
+//pixelstrip.setPixel(2, 12, 34, 56);
+//pixelstrip.setPixel(3, 12, 34, 56);
+//pixelstrip.show();
