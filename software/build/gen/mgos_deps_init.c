@@ -14,6 +14,8 @@ extern bool mgos_vfs_common_init(void);
 extern bool mgos_vfs_fs_lfs_init(void);
 extern bool mgos_vfs_fs_spiffs_init(void);
 extern bool mgos_core_init(void);
+extern bool mgos_wifi_init(void);
+extern bool mgos_http_server_init(void);
 extern bool mgos_i2c_init(void);
 extern bool mgos_mbedtls_init(void);
 extern bool mgos_mjs_init(void);
@@ -22,7 +24,6 @@ extern bool mgos_pwm_init(void);
 extern bool mgos_rpc_common_init(void);
 extern bool mgos_rpc_service_config_init(void);
 extern bool mgos_rpc_service_fs_init(void);
-extern bool mgos_wifi_init(void);
 
 #ifndef MGOS_LIB_INFO_VERSION
 struct mgos_lib_info {
@@ -52,6 +53,12 @@ const struct mgos_lib_info mgos_libs_info[] = {
     // "core". deps: [ "freertos" "mongoose" "vfs-common" "vfs-fs-lfs" "vfs-fs-spiffs" ]
     {.name = "core", .version = "1.0", .init = mgos_core_init},
 
+    // "wifi". deps: [ "core" ]
+    {.name = "wifi", .version = "1.0", .init = mgos_wifi_init},
+
+    // "http-server". deps: [ "core" "wifi" ]
+    {.name = "http-server", .version = "1.0", .init = mgos_http_server_init},
+
     // "i2c". deps: [ "core" ]
     {.name = "i2c", .version = "1.0", .init = mgos_i2c_init},
 
@@ -67,7 +74,7 @@ const struct mgos_lib_info mgos_libs_info[] = {
     // "pwm". deps: [ "core" ]
     {.name = "pwm", .version = "1.0", .init = mgos_pwm_init},
 
-    // "rpc-common". deps: [ "core" "mongoose" ]
+    // "rpc-common". deps: [ "core" "http-server" "mongoose" ]
     {.name = "rpc-common", .version = "1.0", .init = mgos_rpc_common_init},
 
     // "rpc-service-config". deps: [ "core" "rpc-common" ]
@@ -75,9 +82,6 @@ const struct mgos_lib_info mgos_libs_info[] = {
 
     // "rpc-service-fs". deps: [ "core" "rpc-common" "vfs-common" ]
     {.name = "rpc-service-fs", .version = "1.0", .init = mgos_rpc_service_fs_init},
-
-    // "wifi". deps: [ "core" ]
-    {.name = "wifi", .version = "1.0", .init = mgos_wifi_init},
 
     // Last entry.
     {.name = NULL},
