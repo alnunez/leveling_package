@@ -22,11 +22,14 @@ let i2chandler=I2C.get();
 
 let ax;
 let ay;
+let az;
 let aux;
 let auy;
+let auz;
 
 let angulox;
 let anguloy;
+let anguloz;
 
 let angy;
 
@@ -98,6 +101,7 @@ Timer.set(accelreadperiod, Timer.REPEAT, function() {
   let imudata=I2C.readRegN(i2chandler, MGOS_MPU60X0_DEFAULT_I2CADDR, MGOS_MPU60X0_REG_ACCEL_XOUT_H, 6);
   ax = (imudata.at(0) << 8) | (imudata.at(1));
   ay = (imudata.at(2) << 8) | (imudata.at(3));
+  az = (imudata.at(4) << 8) | (imudata.at(5));
   
   // Two's complement
   if ( ax > 32767 )
@@ -108,11 +112,16 @@ Timer.set(accelreadperiod, Timer.REPEAT, function() {
   	{
   		ay = ay - 65535;
   	}  	  
+  if ( az > 32767 )
+  	{
+  		az = az - 65535;
+  	}  	  	
   // values are now in range -32768 to 32767 (-2G to 2G) !
   
   // scaling to unitary circle values
   aux = (ax/16383);	
   auy = (ay/16383);	
+  auz = (az/16383);	
 
   // compute arcsin() to get inclination angle
   
@@ -120,7 +129,7 @@ Timer.set(accelreadperiod, Timer.REPEAT, function() {
   
   angulox = (ax/16383)*90.0;	
   anguloy = (ay/16383)*90.0;	
-
+  anguloz = (az/16383)*90.0;	
 
   // Led logic for X axis
   
@@ -176,8 +185,12 @@ Timer.set(debugprintperiod, Timer.REPEAT, function() {
   print('Printing accelerometer data:');
   print('angulox',angulox);
   print('anguloy',anguloy);
+  print('anguloz',anguloz);
   print('auy',auy);
   print('arcsin',angy);
+  print(' 5 pow 3',pow(5,3));
+  print(' 5 pow 5',pow(5,5));
+  
   
 }, null);
 
