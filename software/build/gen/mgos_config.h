@@ -1,7 +1,7 @@
 /* clang-format off */
 /*
  * Generated file - do not edit.
- * Command: /mongoose-os/tools/mgos_gen_config.py --c_name=mgos_config --c_global_name=mgos_sys_config --dest_dir=/data/fwbuild-volumes/2.19.1/apps/software/esp32/build_contexts/build_ctx_087233178/build/gen/ /mongoose-os/src/mgos_debug_udp_config.yaml /mongoose-os/platforms/esp32/src/esp32_sys_config.yaml /data/fwbuild-volumes/2.19.1/apps/software/esp32/build_contexts/build_ctx_087233178/build/gen/mos_conf_schema.yml
+ * Command: /mongoose-os/tools/mgos_gen_config.py --c_name=mgos_config --c_global_name=mgos_sys_config --dest_dir=/data/fwbuild-volumes/2.19.1/apps/software/esp32/build_contexts/build_ctx_824054785/build/gen/ /mongoose-os/src/mgos_debug_udp_config.yaml /mongoose-os/platforms/esp32/src/esp32_sys_config.yaml /data/fwbuild-volumes/2.19.1/apps/software/esp32/build_contexts/build_ctx_824054785/build/gen/mos_conf_schema.yml
  */
 
 #pragma once
@@ -99,6 +99,64 @@ static inline bool mgos_config_sys_copy(const struct mgos_config_sys *src, struc
 }
 static inline void mgos_config_sys_free(struct mgos_config_sys *cfg) {
   return mgos_conf_free(mgos_config_sys_get_schema(), cfg);
+}
+
+/* bt.gatts type struct mgos_config_bt_gatts */
+struct mgos_config_bt_gatts {
+  int min_sec_level;
+  int require_pairing;
+};
+const struct mgos_conf_entry *mgos_config_bt_gatts_get_schema(void);
+void mgos_config_bt_gatts_set_defaults(struct mgos_config_bt_gatts *cfg);
+static inline bool mgos_config_bt_gatts_parse(struct mg_str json, struct mgos_config_bt_gatts *cfg) {
+  mgos_config_bt_gatts_set_defaults(cfg);
+  return mgos_conf_parse_sub(json, mgos_config_bt_gatts_get_schema(), cfg);
+}
+static inline bool mgos_config_bt_gatts_emit(const struct mgos_config_bt_gatts *cfg, bool pretty, struct json_out *out) {
+  return mgos_conf_emit_json_out(cfg, NULL, mgos_config_bt_gatts_get_schema(), pretty, out);
+}
+static inline bool mgos_config_bt_gatts_emit_f(const struct mgos_config_bt_gatts *cfg, bool pretty, const char *fname) {
+  return mgos_conf_emit_f(cfg, NULL, mgos_config_bt_gatts_get_schema(), pretty, fname);
+}
+static inline bool mgos_config_bt_gatts_copy(const struct mgos_config_bt_gatts *src, struct mgos_config_bt_gatts *dst) {
+  return mgos_conf_copy(mgos_config_bt_gatts_get_schema(), src, dst);
+}
+static inline void mgos_config_bt_gatts_free(struct mgos_config_bt_gatts *cfg) {
+  return mgos_conf_free(mgos_config_bt_gatts_get_schema(), cfg);
+}
+
+/* bt type struct mgos_config_bt */
+struct mgos_config_bt {
+  int enable;
+  const char * dev_name;
+  int adv_enable;
+  const char * scan_rsp_data_hex;
+  int keep_enabled;
+  int allow_pairing;
+  int max_paired_devices;
+  int random_address;
+  int gatt_mtu;
+  struct mgos_config_bt_gatts gatts;
+  int config_svc_enable;
+  int config_svc_sec_level;
+};
+const struct mgos_conf_entry *mgos_config_bt_get_schema(void);
+void mgos_config_bt_set_defaults(struct mgos_config_bt *cfg);
+static inline bool mgos_config_bt_parse(struct mg_str json, struct mgos_config_bt *cfg) {
+  mgos_config_bt_set_defaults(cfg);
+  return mgos_conf_parse_sub(json, mgos_config_bt_get_schema(), cfg);
+}
+static inline bool mgos_config_bt_emit(const struct mgos_config_bt *cfg, bool pretty, struct json_out *out) {
+  return mgos_conf_emit_json_out(cfg, NULL, mgos_config_bt_get_schema(), pretty, out);
+}
+static inline bool mgos_config_bt_emit_f(const struct mgos_config_bt *cfg, bool pretty, const char *fname) {
+  return mgos_conf_emit_f(cfg, NULL, mgos_config_bt_get_schema(), pretty, fname);
+}
+static inline bool mgos_config_bt_copy(const struct mgos_config_bt *src, struct mgos_config_bt *dst) {
+  return mgos_conf_copy(mgos_config_bt_get_schema(), src, dst);
+}
+static inline void mgos_config_bt_free(struct mgos_config_bt *cfg) {
+  return mgos_conf_free(mgos_config_bt_get_schema(), cfg);
 }
 
 /* http type struct mgos_config_http */
@@ -561,6 +619,7 @@ struct mgos_config {
   struct mgos_config_device device;
   struct mgos_config_sys sys;
   const char * conf_acl;
+  struct mgos_config_bt bt;
   struct mgos_config_http http;
   struct mgos_config_i2c i2c;
   struct mgos_config_i2c i2c1;
@@ -797,6 +856,148 @@ static inline const char * mgos_sys_config_get_conf_acl(void) { return mgos_conf
 static inline const char * mgos_sys_config_get_default_conf_acl(void) { return mgos_config_get_default_conf_acl(); }
 void mgos_config_set_conf_acl(struct mgos_config *cfg, const char * v);
 static inline void mgos_sys_config_set_conf_acl(const char * v) { mgos_config_set_conf_acl(&mgos_sys_config, v); }
+
+/* bt */
+#define MGOS_CONFIG_HAVE_BT
+#define MGOS_SYS_CONFIG_HAVE_BT
+const struct mgos_config_bt *mgos_config_get_bt(const struct mgos_config *cfg);
+static inline const struct mgos_config_bt *mgos_sys_config_get_bt(void) { return mgos_config_get_bt(&mgos_sys_config); }
+
+/* bt.enable */
+#define MGOS_CONFIG_HAVE_BT_ENABLE
+#define MGOS_SYS_CONFIG_HAVE_BT_ENABLE
+int mgos_config_get_bt_enable(const struct mgos_config *cfg);
+int mgos_config_get_default_bt_enable(void);
+static inline int mgos_sys_config_get_bt_enable(void) { return mgos_config_get_bt_enable(&mgos_sys_config); }
+static inline int mgos_sys_config_get_default_bt_enable(void) { return mgos_config_get_default_bt_enable(); }
+void mgos_config_set_bt_enable(struct mgos_config *cfg, int v);
+static inline void mgos_sys_config_set_bt_enable(int v) { mgos_config_set_bt_enable(&mgos_sys_config, v); }
+
+/* bt.dev_name */
+#define MGOS_CONFIG_HAVE_BT_DEV_NAME
+#define MGOS_SYS_CONFIG_HAVE_BT_DEV_NAME
+const char * mgos_config_get_bt_dev_name(const struct mgos_config *cfg);
+const char * mgos_config_get_default_bt_dev_name(void);
+static inline const char * mgos_sys_config_get_bt_dev_name(void) { return mgos_config_get_bt_dev_name(&mgos_sys_config); }
+static inline const char * mgos_sys_config_get_default_bt_dev_name(void) { return mgos_config_get_default_bt_dev_name(); }
+void mgos_config_set_bt_dev_name(struct mgos_config *cfg, const char * v);
+static inline void mgos_sys_config_set_bt_dev_name(const char * v) { mgos_config_set_bt_dev_name(&mgos_sys_config, v); }
+
+/* bt.adv_enable */
+#define MGOS_CONFIG_HAVE_BT_ADV_ENABLE
+#define MGOS_SYS_CONFIG_HAVE_BT_ADV_ENABLE
+int mgos_config_get_bt_adv_enable(const struct mgos_config *cfg);
+int mgos_config_get_default_bt_adv_enable(void);
+static inline int mgos_sys_config_get_bt_adv_enable(void) { return mgos_config_get_bt_adv_enable(&mgos_sys_config); }
+static inline int mgos_sys_config_get_default_bt_adv_enable(void) { return mgos_config_get_default_bt_adv_enable(); }
+void mgos_config_set_bt_adv_enable(struct mgos_config *cfg, int v);
+static inline void mgos_sys_config_set_bt_adv_enable(int v) { mgos_config_set_bt_adv_enable(&mgos_sys_config, v); }
+
+/* bt.scan_rsp_data_hex */
+#define MGOS_CONFIG_HAVE_BT_SCAN_RSP_DATA_HEX
+#define MGOS_SYS_CONFIG_HAVE_BT_SCAN_RSP_DATA_HEX
+const char * mgos_config_get_bt_scan_rsp_data_hex(const struct mgos_config *cfg);
+const char * mgos_config_get_default_bt_scan_rsp_data_hex(void);
+static inline const char * mgos_sys_config_get_bt_scan_rsp_data_hex(void) { return mgos_config_get_bt_scan_rsp_data_hex(&mgos_sys_config); }
+static inline const char * mgos_sys_config_get_default_bt_scan_rsp_data_hex(void) { return mgos_config_get_default_bt_scan_rsp_data_hex(); }
+void mgos_config_set_bt_scan_rsp_data_hex(struct mgos_config *cfg, const char * v);
+static inline void mgos_sys_config_set_bt_scan_rsp_data_hex(const char * v) { mgos_config_set_bt_scan_rsp_data_hex(&mgos_sys_config, v); }
+
+/* bt.keep_enabled */
+#define MGOS_CONFIG_HAVE_BT_KEEP_ENABLED
+#define MGOS_SYS_CONFIG_HAVE_BT_KEEP_ENABLED
+int mgos_config_get_bt_keep_enabled(const struct mgos_config *cfg);
+int mgos_config_get_default_bt_keep_enabled(void);
+static inline int mgos_sys_config_get_bt_keep_enabled(void) { return mgos_config_get_bt_keep_enabled(&mgos_sys_config); }
+static inline int mgos_sys_config_get_default_bt_keep_enabled(void) { return mgos_config_get_default_bt_keep_enabled(); }
+void mgos_config_set_bt_keep_enabled(struct mgos_config *cfg, int v);
+static inline void mgos_sys_config_set_bt_keep_enabled(int v) { mgos_config_set_bt_keep_enabled(&mgos_sys_config, v); }
+
+/* bt.allow_pairing */
+#define MGOS_CONFIG_HAVE_BT_ALLOW_PAIRING
+#define MGOS_SYS_CONFIG_HAVE_BT_ALLOW_PAIRING
+int mgos_config_get_bt_allow_pairing(const struct mgos_config *cfg);
+int mgos_config_get_default_bt_allow_pairing(void);
+static inline int mgos_sys_config_get_bt_allow_pairing(void) { return mgos_config_get_bt_allow_pairing(&mgos_sys_config); }
+static inline int mgos_sys_config_get_default_bt_allow_pairing(void) { return mgos_config_get_default_bt_allow_pairing(); }
+void mgos_config_set_bt_allow_pairing(struct mgos_config *cfg, int v);
+static inline void mgos_sys_config_set_bt_allow_pairing(int v) { mgos_config_set_bt_allow_pairing(&mgos_sys_config, v); }
+
+/* bt.max_paired_devices */
+#define MGOS_CONFIG_HAVE_BT_MAX_PAIRED_DEVICES
+#define MGOS_SYS_CONFIG_HAVE_BT_MAX_PAIRED_DEVICES
+int mgos_config_get_bt_max_paired_devices(const struct mgos_config *cfg);
+int mgos_config_get_default_bt_max_paired_devices(void);
+static inline int mgos_sys_config_get_bt_max_paired_devices(void) { return mgos_config_get_bt_max_paired_devices(&mgos_sys_config); }
+static inline int mgos_sys_config_get_default_bt_max_paired_devices(void) { return mgos_config_get_default_bt_max_paired_devices(); }
+void mgos_config_set_bt_max_paired_devices(struct mgos_config *cfg, int v);
+static inline void mgos_sys_config_set_bt_max_paired_devices(int v) { mgos_config_set_bt_max_paired_devices(&mgos_sys_config, v); }
+
+/* bt.random_address */
+#define MGOS_CONFIG_HAVE_BT_RANDOM_ADDRESS
+#define MGOS_SYS_CONFIG_HAVE_BT_RANDOM_ADDRESS
+int mgos_config_get_bt_random_address(const struct mgos_config *cfg);
+int mgos_config_get_default_bt_random_address(void);
+static inline int mgos_sys_config_get_bt_random_address(void) { return mgos_config_get_bt_random_address(&mgos_sys_config); }
+static inline int mgos_sys_config_get_default_bt_random_address(void) { return mgos_config_get_default_bt_random_address(); }
+void mgos_config_set_bt_random_address(struct mgos_config *cfg, int v);
+static inline void mgos_sys_config_set_bt_random_address(int v) { mgos_config_set_bt_random_address(&mgos_sys_config, v); }
+
+/* bt.gatt_mtu */
+#define MGOS_CONFIG_HAVE_BT_GATT_MTU
+#define MGOS_SYS_CONFIG_HAVE_BT_GATT_MTU
+int mgos_config_get_bt_gatt_mtu(const struct mgos_config *cfg);
+int mgos_config_get_default_bt_gatt_mtu(void);
+static inline int mgos_sys_config_get_bt_gatt_mtu(void) { return mgos_config_get_bt_gatt_mtu(&mgos_sys_config); }
+static inline int mgos_sys_config_get_default_bt_gatt_mtu(void) { return mgos_config_get_default_bt_gatt_mtu(); }
+void mgos_config_set_bt_gatt_mtu(struct mgos_config *cfg, int v);
+static inline void mgos_sys_config_set_bt_gatt_mtu(int v) { mgos_config_set_bt_gatt_mtu(&mgos_sys_config, v); }
+
+/* bt.gatts */
+#define MGOS_CONFIG_HAVE_BT_GATTS
+#define MGOS_SYS_CONFIG_HAVE_BT_GATTS
+const struct mgos_config_bt_gatts *mgos_config_get_bt_gatts(const struct mgos_config *cfg);
+static inline const struct mgos_config_bt_gatts *mgos_sys_config_get_bt_gatts(void) { return mgos_config_get_bt_gatts(&mgos_sys_config); }
+
+/* bt.gatts.min_sec_level */
+#define MGOS_CONFIG_HAVE_BT_GATTS_MIN_SEC_LEVEL
+#define MGOS_SYS_CONFIG_HAVE_BT_GATTS_MIN_SEC_LEVEL
+int mgos_config_get_bt_gatts_min_sec_level(const struct mgos_config *cfg);
+int mgos_config_get_default_bt_gatts_min_sec_level(void);
+static inline int mgos_sys_config_get_bt_gatts_min_sec_level(void) { return mgos_config_get_bt_gatts_min_sec_level(&mgos_sys_config); }
+static inline int mgos_sys_config_get_default_bt_gatts_min_sec_level(void) { return mgos_config_get_default_bt_gatts_min_sec_level(); }
+void mgos_config_set_bt_gatts_min_sec_level(struct mgos_config *cfg, int v);
+static inline void mgos_sys_config_set_bt_gatts_min_sec_level(int v) { mgos_config_set_bt_gatts_min_sec_level(&mgos_sys_config, v); }
+
+/* bt.gatts.require_pairing */
+#define MGOS_CONFIG_HAVE_BT_GATTS_REQUIRE_PAIRING
+#define MGOS_SYS_CONFIG_HAVE_BT_GATTS_REQUIRE_PAIRING
+int mgos_config_get_bt_gatts_require_pairing(const struct mgos_config *cfg);
+int mgos_config_get_default_bt_gatts_require_pairing(void);
+static inline int mgos_sys_config_get_bt_gatts_require_pairing(void) { return mgos_config_get_bt_gatts_require_pairing(&mgos_sys_config); }
+static inline int mgos_sys_config_get_default_bt_gatts_require_pairing(void) { return mgos_config_get_default_bt_gatts_require_pairing(); }
+void mgos_config_set_bt_gatts_require_pairing(struct mgos_config *cfg, int v);
+static inline void mgos_sys_config_set_bt_gatts_require_pairing(int v) { mgos_config_set_bt_gatts_require_pairing(&mgos_sys_config, v); }
+
+/* bt.config_svc_enable */
+#define MGOS_CONFIG_HAVE_BT_CONFIG_SVC_ENABLE
+#define MGOS_SYS_CONFIG_HAVE_BT_CONFIG_SVC_ENABLE
+int mgos_config_get_bt_config_svc_enable(const struct mgos_config *cfg);
+int mgos_config_get_default_bt_config_svc_enable(void);
+static inline int mgos_sys_config_get_bt_config_svc_enable(void) { return mgos_config_get_bt_config_svc_enable(&mgos_sys_config); }
+static inline int mgos_sys_config_get_default_bt_config_svc_enable(void) { return mgos_config_get_default_bt_config_svc_enable(); }
+void mgos_config_set_bt_config_svc_enable(struct mgos_config *cfg, int v);
+static inline void mgos_sys_config_set_bt_config_svc_enable(int v) { mgos_config_set_bt_config_svc_enable(&mgos_sys_config, v); }
+
+/* bt.config_svc_sec_level */
+#define MGOS_CONFIG_HAVE_BT_CONFIG_SVC_SEC_LEVEL
+#define MGOS_SYS_CONFIG_HAVE_BT_CONFIG_SVC_SEC_LEVEL
+int mgos_config_get_bt_config_svc_sec_level(const struct mgos_config *cfg);
+int mgos_config_get_default_bt_config_svc_sec_level(void);
+static inline int mgos_sys_config_get_bt_config_svc_sec_level(void) { return mgos_config_get_bt_config_svc_sec_level(&mgos_sys_config); }
+static inline int mgos_sys_config_get_default_bt_config_svc_sec_level(void) { return mgos_config_get_default_bt_config_svc_sec_level(); }
+void mgos_config_set_bt_config_svc_sec_level(struct mgos_config *cfg, int v);
+static inline void mgos_sys_config_set_bt_config_svc_sec_level(int v) { mgos_config_set_bt_config_svc_sec_level(&mgos_sys_config, v); }
 
 /* http */
 #define MGOS_CONFIG_HAVE_HTTP

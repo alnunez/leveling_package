@@ -5,6 +5,7 @@ load('api_pwm.js');
 load('api_gpio.js');
 load('api_rpc.js');
 load('api_neopixel.js');
+//load('api_bt_gap.js');
 
 load('mpu60x0_h.js');
 load('math.js');

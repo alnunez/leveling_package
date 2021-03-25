@@ -14,6 +14,8 @@ extern bool mgos_vfs_common_init(void);
 extern bool mgos_vfs_fs_lfs_init(void);
 extern bool mgos_vfs_fs_spiffs_init(void);
 extern bool mgos_core_init(void);
+extern bool mgos_bt_common_init(void);
+extern bool mgos_bt_service_config_init(void);
 extern bool mgos_wifi_init(void);
 extern bool mgos_http_server_init(void);
 extern bool mgos_i2c_init(void);
@@ -52,6 +54,12 @@ const struct mgos_lib_info mgos_libs_info[] = {
 
     // "core". deps: [ "freertos" "mongoose" "vfs-common" "vfs-fs-lfs" "vfs-fs-spiffs" ]
     {.name = "core", .version = "1.0", .init = mgos_core_init},
+
+    // "bt-common". deps: [ "core" ]
+    {.name = "bt-common", .version = "1.0", .init = mgos_bt_common_init},
+
+    // "bt-service-config". deps: [ "bt-common" "core" ]
+    {.name = "bt-service-config", .version = "1.0", .init = mgos_bt_service_config_init},
 
     // "wifi". deps: [ "core" ]
     {.name = "wifi", .version = "1.0", .init = mgos_wifi_init},

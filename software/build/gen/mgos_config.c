@@ -1,7 +1,7 @@
 /* clang-format off */
 /*
  * Generated file - do not edit.
- * Command: /mongoose-os/tools/mgos_gen_config.py --c_name=mgos_config --c_global_name=mgos_sys_config --dest_dir=/data/fwbuild-volumes/2.19.1/apps/software/esp32/build_contexts/build_ctx_087233178/build/gen/ /mongoose-os/src/mgos_debug_udp_config.yaml /mongoose-os/platforms/esp32/src/esp32_sys_config.yaml /data/fwbuild-volumes/2.19.1/apps/software/esp32/build_contexts/build_ctx_087233178/build/gen/mos_conf_schema.yml
+ * Command: /mongoose-os/tools/mgos_gen_config.py --c_name=mgos_config --c_global_name=mgos_sys_config --dest_dir=/data/fwbuild-volumes/2.19.1/apps/software/esp32/build_contexts/build_ctx_824054785/build/gen/ /mongoose-os/src/mgos_debug_udp_config.yaml /mongoose-os/platforms/esp32/src/esp32_sys_config.yaml /data/fwbuild-volumes/2.19.1/apps/software/esp32/build_contexts/build_ctx_824054785/build/gen/mos_conf_schema.yml
  */
 
 #include "mgos_config.h"
@@ -13,7 +13,7 @@
 
 /* struct mgos_config */
 static const struct mgos_conf_entry mgos_config_schema_[] = {
-    {.type = CONF_TYPE_OBJECT, .key = "", .offset = 0, .num_desc = 151},
+    {.type = CONF_TYPE_OBJECT, .key = "", .offset = 0, .num_desc = 166},
     {.type = CONF_TYPE_OBJECT, .key = "debug", .offset = offsetof(struct mgos_config, debug), .num_desc = 10},
     {.type = CONF_TYPE_STRING, .key = "udp_log_addr", .offset = offsetof(struct mgos_config, debug.udp_log_addr)},
     {.type = CONF_TYPE_INT, .key = "udp_log_level", .offset = offsetof(struct mgos_config, debug.udp_log_level)},
@@ -36,6 +36,21 @@ static const struct mgos_conf_entry mgos_config_schema_[] = {
     {.type = CONF_TYPE_INT, .key = "wdt_timeout", .offset = offsetof(struct mgos_config, sys.wdt_timeout)},
     {.type = CONF_TYPE_STRING, .key = "pref_ota_lib", .offset = offsetof(struct mgos_config, sys.pref_ota_lib)},
     {.type = CONF_TYPE_STRING, .key = "conf_acl", .offset = offsetof(struct mgos_config, conf_acl)},
+    {.type = CONF_TYPE_OBJECT, .key = "bt", .offset = offsetof(struct mgos_config, bt), .num_desc = 14},
+    {.type = CONF_TYPE_BOOL, .key = "enable", .offset = offsetof(struct mgos_config, bt.enable)},
+    {.type = CONF_TYPE_STRING, .key = "dev_name", .offset = offsetof(struct mgos_config, bt.dev_name)},
+    {.type = CONF_TYPE_BOOL, .key = "adv_enable", .offset = offsetof(struct mgos_config, bt.adv_enable)},
+    {.type = CONF_TYPE_STRING, .key = "scan_rsp_data_hex", .offset = offsetof(struct mgos_config, bt.scan_rsp_data_hex)},
+    {.type = CONF_TYPE_BOOL, .key = "keep_enabled", .offset = offsetof(struct mgos_config, bt.keep_enabled)},
+    {.type = CONF_TYPE_BOOL, .key = "allow_pairing", .offset = offsetof(struct mgos_config, bt.allow_pairing)},
+    {.type = CONF_TYPE_INT, .key = "max_paired_devices", .offset = offsetof(struct mgos_config, bt.max_paired_devices)},
+    {.type = CONF_TYPE_BOOL, .key = "random_address", .offset = offsetof(struct mgos_config, bt.random_address)},
+    {.type = CONF_TYPE_INT, .key = "gatt_mtu", .offset = offsetof(struct mgos_config, bt.gatt_mtu)},
+    {.type = CONF_TYPE_OBJECT, .key = "gatts", .offset = offsetof(struct mgos_config, bt.gatts), .num_desc = 2},
+    {.type = CONF_TYPE_INT, .key = "min_sec_level", .offset = offsetof(struct mgos_config, bt.gatts.min_sec_level)},
+    {.type = CONF_TYPE_BOOL, .key = "require_pairing", .offset = offsetof(struct mgos_config, bt.gatts.require_pairing)},
+    {.type = CONF_TYPE_BOOL, .key = "config_svc_enable", .offset = offsetof(struct mgos_config, bt.config_svc_enable)},
+    {.type = CONF_TYPE_INT, .key = "config_svc_sec_level", .offset = offsetof(struct mgos_config, bt.config_svc_sec_level)},
     {.type = CONF_TYPE_OBJECT, .key = "http", .offset = offsetof(struct mgos_config, http), .num_desc = 12},
     {.type = CONF_TYPE_BOOL, .key = "enable", .offset = offsetof(struct mgos_config, http.enable)},
     {.type = CONF_TYPE_STRING, .key = "listen_addr", .offset = offsetof(struct mgos_config, http.listen_addr)},
@@ -209,9 +224,39 @@ void mgos_config_sys_set_defaults(struct mgos_config_sys *cfg) {
   cfg->pref_ota_lib = NULL;
 }
 
+/* struct mgos_config_bt_gatts */
+const struct mgos_conf_entry *mgos_config_bt_gatts_get_schema(void) {
+  return &mgos_config_schema_[33];
+}
+
+void mgos_config_bt_gatts_set_defaults(struct mgos_config_bt_gatts *cfg) {
+  cfg->min_sec_level = 0;
+  cfg->require_pairing = false;
+}
+
+/* struct mgos_config_bt */
+const struct mgos_conf_entry *mgos_config_bt_get_schema(void) {
+  return &mgos_config_schema_[23];
+}
+
+void mgos_config_bt_set_defaults(struct mgos_config_bt *cfg) {
+  cfg->enable = true;
+  cfg->dev_name = NULL;
+  cfg->adv_enable = true;
+  cfg->scan_rsp_data_hex = NULL;
+  cfg->keep_enabled = false;
+  cfg->allow_pairing = true;
+  cfg->max_paired_devices = -1;
+  cfg->random_address = true;
+  cfg->gatt_mtu = 500;
+  mgos_config_bt_gatts_set_defaults(&cfg->gatts);
+  cfg->config_svc_enable = true;
+  cfg->config_svc_sec_level = 0;
+}
+
 /* struct mgos_config_http */
 const struct mgos_conf_entry *mgos_config_http_get_schema(void) {
-  return &mgos_config_schema_[23];
+  return &mgos_config_schema_[38];
 }
 
 void mgos_config_http_set_defaults(struct mgos_config_http *cfg) {
@@ -231,7 +276,7 @@ void mgos_config_http_set_defaults(struct mgos_config_http *cfg) {
 
 /* struct mgos_config_i2c */
 const struct mgos_conf_entry *mgos_config_i2c_get_schema(void) {
-  return &mgos_config_schema_[43];
+  return &mgos_config_schema_[58];
 }
 
 void mgos_config_i2c_set_defaults(struct mgos_config_i2c *cfg) {
@@ -245,7 +290,7 @@ void mgos_config_i2c_set_defaults(struct mgos_config_i2c *cfg) {
 
 /* struct mgos_config_i2c */
 const struct mgos_conf_entry *mgos_config_i2c1_get_schema(void) {
-  return &mgos_config_schema_[43];
+  return &mgos_config_schema_[58];
 }
 
 void mgos_config_i2c1_set_defaults(struct mgos_config_i2c *cfg) {
@@ -259,7 +304,7 @@ void mgos_config_i2c1_set_defaults(struct mgos_config_i2c *cfg) {
 
 /* struct mgos_config_mjs */
 const struct mgos_conf_entry *mgos_config_mjs_get_schema(void) {
-  return &mgos_config_schema_[50];
+  return &mgos_config_schema_[65];
 }
 
 void mgos_config_mjs_set_defaults(struct mgos_config_mjs *cfg) {
@@ -268,7 +313,7 @@ void mgos_config_mjs_set_defaults(struct mgos_config_mjs *cfg) {
 
 /* struct mgos_config_rpc */
 const struct mgos_conf_entry *mgos_config_rpc_get_schema(void) {
-  return &mgos_config_schema_[52];
+  return &mgos_config_schema_[67];
 }
 
 void mgos_config_rpc_set_defaults(struct mgos_config_rpc *cfg) {
@@ -285,7 +330,7 @@ void mgos_config_rpc_set_defaults(struct mgos_config_rpc *cfg) {
 
 /* struct mgos_config_wifi_ap */
 const struct mgos_conf_entry *mgos_config_wifi_ap_get_schema(void) {
-  return &mgos_config_schema_[63];
+  return &mgos_config_schema_[78];
 }
 
 void mgos_config_wifi_ap_set_defaults(struct mgos_config_wifi_ap *cfg) {
@@ -310,7 +355,7 @@ void mgos_config_wifi_ap_set_defaults(struct mgos_config_wifi_ap *cfg) {
 
 /* struct mgos_config_wifi_sta */
 const struct mgos_conf_entry *mgos_config_wifi_sta_get_schema(void) {
-  return &mgos_config_schema_[113];
+  return &mgos_config_schema_[128];
 }
 
 void mgos_config_wifi_sta_set_defaults(struct mgos_config_wifi_sta *cfg) {
@@ -333,7 +378,7 @@ void mgos_config_wifi_sta_set_defaults(struct mgos_config_wifi_sta *cfg) {
 
 /* struct mgos_config_wifi_sta */
 const struct mgos_conf_entry *mgos_config_wifi_sta1_get_schema(void) {
-  return &mgos_config_schema_[113];
+  return &mgos_config_schema_[128];
 }
 
 void mgos_config_wifi_sta1_set_defaults(struct mgos_config_wifi_sta *cfg) {
@@ -356,7 +401,7 @@ void mgos_config_wifi_sta1_set_defaults(struct mgos_config_wifi_sta *cfg) {
 
 /* struct mgos_config_wifi_sta */
 const struct mgos_conf_entry *mgos_config_wifi_sta2_get_schema(void) {
-  return &mgos_config_schema_[113];
+  return &mgos_config_schema_[128];
 }
 
 void mgos_config_wifi_sta2_set_defaults(struct mgos_config_wifi_sta *cfg) {
@@ -379,7 +424,7 @@ void mgos_config_wifi_sta2_set_defaults(struct mgos_config_wifi_sta *cfg) {
 
 /* struct mgos_config_wifi */
 const struct mgos_conf_entry *mgos_config_wifi_get_schema(void) {
-  return &mgos_config_schema_[62];
+  return &mgos_config_schema_[77];
 }
 
 void mgos_config_wifi_set_defaults(struct mgos_config_wifi *cfg) {
@@ -395,7 +440,7 @@ void mgos_config_wifi_set_defaults(struct mgos_config_wifi *cfg) {
 
 /* struct mgos_config_board_led1 */
 const struct mgos_conf_entry *mgos_config_board_led1_get_schema(void) {
-  return &mgos_config_schema_[134];
+  return &mgos_config_schema_[149];
 }
 
 void mgos_config_board_led1_set_defaults(struct mgos_config_board_led1 *cfg) {
@@ -405,7 +450,7 @@ void mgos_config_board_led1_set_defaults(struct mgos_config_board_led1 *cfg) {
 
 /* struct mgos_config_board_led2 */
 const struct mgos_conf_entry *mgos_config_board_led2_get_schema(void) {
-  return &mgos_config_schema_[137];
+  return &mgos_config_schema_[152];
 }
 
 void mgos_config_board_led2_set_defaults(struct mgos_config_board_led2 *cfg) {
@@ -415,7 +460,7 @@ void mgos_config_board_led2_set_defaults(struct mgos_config_board_led2 *cfg) {
 
 /* struct mgos_config_board_led3 */
 const struct mgos_conf_entry *mgos_config_board_led3_get_schema(void) {
-  return &mgos_config_schema_[140];
+  return &mgos_config_schema_[155];
 }
 
 void mgos_config_board_led3_set_defaults(struct mgos_config_board_led3 *cfg) {
@@ -425,7 +470,7 @@ void mgos_config_board_led3_set_defaults(struct mgos_config_board_led3 *cfg) {
 
 /* struct mgos_config_board_btn1 */
 const struct mgos_conf_entry *mgos_config_board_btn1_get_schema(void) {
-  return &mgos_config_schema_[143];
+  return &mgos_config_schema_[158];
 }
 
 void mgos_config_board_btn1_set_defaults(struct mgos_config_board_btn1 *cfg) {
@@ -435,7 +480,7 @@ void mgos_config_board_btn1_set_defaults(struct mgos_config_board_btn1 *cfg) {
 
 /* struct mgos_config_board_btn2 */
 const struct mgos_conf_entry *mgos_config_board_btn2_get_schema(void) {
-  return &mgos_config_schema_[146];
+  return &mgos_config_schema_[161];
 }
 
 void mgos_config_board_btn2_set_defaults(struct mgos_config_board_btn2 *cfg) {
@@ -445,7 +490,7 @@ void mgos_config_board_btn2_set_defaults(struct mgos_config_board_btn2 *cfg) {
 
 /* struct mgos_config_board_btn3 */
 const struct mgos_conf_entry *mgos_config_board_btn3_get_schema(void) {
-  return &mgos_config_schema_[149];
+  return &mgos_config_schema_[164];
 }
 
 void mgos_config_board_btn3_set_defaults(struct mgos_config_board_btn3 *cfg) {
@@ -455,7 +500,7 @@ void mgos_config_board_btn3_set_defaults(struct mgos_config_board_btn3 *cfg) {
 
 /* struct mgos_config_board */
 const struct mgos_conf_entry *mgos_config_board_get_schema(void) {
-  return &mgos_config_schema_[133];
+  return &mgos_config_schema_[148];
 }
 
 void mgos_config_board_set_defaults(struct mgos_config_board *cfg) {
@@ -477,6 +522,7 @@ void mgos_config_set_defaults(struct mgos_config *cfg) {
   mgos_config_device_set_defaults(&cfg->device);
   mgos_config_sys_set_defaults(&cfg->sys);
   cfg->conf_acl = "*";
+  mgos_config_bt_set_defaults(&cfg->bt);
   mgos_config_http_set_defaults(&cfg->http);
   mgos_config_i2c_set_defaults(&cfg->i2c);
   mgos_config_i2c1_set_defaults(&cfg->i2c1);
@@ -594,6 +640,77 @@ void mgos_config_set_sys_pref_ota_lib(struct mgos_config *cfg, const char * v) {
 const char * mgos_config_get_conf_acl(const struct mgos_config *cfg) { return cfg->conf_acl; }
 const char * mgos_config_get_default_conf_acl(void) { return "*"; }
 void mgos_config_set_conf_acl(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->conf_acl, v); }
+
+/* bt */
+const struct mgos_config_bt *mgos_config_get_bt(const struct mgos_config *cfg) { return &cfg->bt; }
+
+/* bt.enable */
+int mgos_config_get_bt_enable(const struct mgos_config *cfg) { return cfg->bt.enable; }
+int mgos_config_get_default_bt_enable(void) { return true; }
+void mgos_config_set_bt_enable(struct mgos_config *cfg, int v) { cfg->bt.enable = v; }
+
+/* bt.dev_name */
+const char * mgos_config_get_bt_dev_name(const struct mgos_config *cfg) { return cfg->bt.dev_name; }
+const char * mgos_config_get_default_bt_dev_name(void) { return NULL; }
+void mgos_config_set_bt_dev_name(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->bt.dev_name, v); }
+
+/* bt.adv_enable */
+int mgos_config_get_bt_adv_enable(const struct mgos_config *cfg) { return cfg->bt.adv_enable; }
+int mgos_config_get_default_bt_adv_enable(void) { return true; }
+void mgos_config_set_bt_adv_enable(struct mgos_config *cfg, int v) { cfg->bt.adv_enable = v; }
+
+/* bt.scan_rsp_data_hex */
+const char * mgos_config_get_bt_scan_rsp_data_hex(const struct mgos_config *cfg) { return cfg->bt.scan_rsp_data_hex; }
+const char * mgos_config_get_default_bt_scan_rsp_data_hex(void) { return NULL; }
+void mgos_config_set_bt_scan_rsp_data_hex(struct mgos_config *cfg, const char * v) { mgos_conf_set_str(&cfg->bt.scan_rsp_data_hex, v); }
+
+/* bt.keep_enabled */
+int mgos_config_get_bt_keep_enabled(const struct mgos_config *cfg) { return cfg->bt.keep_enabled; }
+int mgos_config_get_default_bt_keep_enabled(void) { return false; }
+void mgos_config_set_bt_keep_enabled(struct mgos_config *cfg, int v) { cfg->bt.keep_enabled = v; }
+
+/* bt.allow_pairing */
+int mgos_config_get_bt_allow_pairing(const struct mgos_config *cfg) { return cfg->bt.allow_pairing; }
+int mgos_config_get_default_bt_allow_pairing(void) { return true; }
+void mgos_config_set_bt_allow_pairing(struct mgos_config *cfg, int v) { cfg->bt.allow_pairing = v; }
+
+/* bt.max_paired_devices */
+int mgos_config_get_bt_max_paired_devices(const struct mgos_config *cfg) { return cfg->bt.max_paired_devices; }
+int mgos_config_get_default_bt_max_paired_devices(void) { return -1; }
+void mgos_config_set_bt_max_paired_devices(struct mgos_config *cfg, int v) { cfg->bt.max_paired_devices = v; }
+
+/* bt.random_address */
+int mgos_config_get_bt_random_address(const struct mgos_config *cfg) { return cfg->bt.random_address; }
+int mgos_config_get_default_bt_random_address(void) { return true; }
+void mgos_config_set_bt_random_address(struct mgos_config *cfg, int v) { cfg->bt.random_address = v; }
+
+/* bt.gatt_mtu */
+int mgos_config_get_bt_gatt_mtu(const struct mgos_config *cfg) { return cfg->bt.gatt_mtu; }
+int mgos_config_get_default_bt_gatt_mtu(void) { return 500; }
+void mgos_config_set_bt_gatt_mtu(struct mgos_config *cfg, int v) { cfg->bt.gatt_mtu = v; }
+
+/* bt.gatts */
+const struct mgos_config_bt_gatts *mgos_config_get_bt_gatts(const struct mgos_config *cfg) { return &cfg->bt.gatts; }
+
+/* bt.gatts.min_sec_level */
+int mgos_config_get_bt_gatts_min_sec_level(const struct mgos_config *cfg) { return cfg->bt.gatts.min_sec_level; }
+int mgos_config_get_default_bt_gatts_min_sec_level(void) { return 0; }
+void mgos_config_set_bt_gatts_min_sec_level(struct mgos_config *cfg, int v) { cfg->bt.gatts.min_sec_level = v; }
+
+/* bt.gatts.require_pairing */
+int mgos_config_get_bt_gatts_require_pairing(const struct mgos_config *cfg) { return cfg->bt.gatts.require_pairing; }
+int mgos_config_get_default_bt_gatts_require_pairing(void) { return false; }
+void mgos_config_set_bt_gatts_require_pairing(struct mgos_config *cfg, int v) { cfg->bt.gatts.require_pairing = v; }
+
+/* bt.config_svc_enable */
+int mgos_config_get_bt_config_svc_enable(const struct mgos_config *cfg) { return cfg->bt.config_svc_enable; }
+int mgos_config_get_default_bt_config_svc_enable(void) { return true; }
+void mgos_config_set_bt_config_svc_enable(struct mgos_config *cfg, int v) { cfg->bt.config_svc_enable = v; }
+
+/* bt.config_svc_sec_level */
+int mgos_config_get_bt_config_svc_sec_level(const struct mgos_config *cfg) { return cfg->bt.config_svc_sec_level; }
+int mgos_config_get_default_bt_config_svc_sec_level(void) { return 0; }
+void mgos_config_set_bt_config_svc_sec_level(struct mgos_config *cfg, int v) { cfg->bt.config_svc_sec_level = v; }
 
 /* http */
 const struct mgos_config_http *mgos_config_get_http(const struct mgos_config *cfg) { return &cfg->http; }

@@ -35,6 +35,28 @@ void  mg_set_protocol_http_websocket(void *);
 double  mg_time(void);
 void * mgos_bind(char *, void (*)(void *, int, void *, void *), void *);
 void  mgos_bitbang_write_bits_js(int, int, int, void *, int);
+void * mgos_bt_gap_get_srdd(void);
+char * mgos_bt_gap_parse_name_js(struct mg_str *);
+bool  mgos_bt_gap_scan_js(int, bool);
+void * mgos_bt_gatt_js_get_conn_def(void);
+void * mgos_bt_gatt_js_get_conn_def(void);
+bool  mgos_bt_gattc_connect_js(char *);
+bool  mgos_bt_gattc_disconnect(int);
+bool  mgos_bt_gattc_discover(int);
+void * mgos_bt_gattc_js_get_discovery_result_arg_def(void);
+void * mgos_bt_gattc_js_get_notify_arg_def(void);
+void * mgos_bt_gattc_js_get_read_result_def(void);
+bool  mgos_bt_gattc_read(int, int);
+bool  mgos_bt_gattc_subscribe(int, int);
+bool  mgos_bt_gattc_write_js(int, int, struct mg_str *);
+void * mgos_bt_gatts_js_add_char(void *, char *, int);
+void  mgos_bt_gatts_js_free_chars(void *);
+void * mgos_bt_gatts_js_get_notify_mode_arg_def(void);
+void * mgos_bt_gatts_js_get_read_arg_def(void);
+void * mgos_bt_gatts_js_get_write_arg_def(void);
+void  mgos_bt_gatts_notify_js(void *, int, int, struct mg_str *);
+bool  mgos_bt_gatts_register_service(char *, int, void *, int (*)(void *, int, void *, void *), void *);
+void  mgos_bt_gatts_send_resp_data_js(void *, void *, struct mg_str *);
 void  mgos_clear_timer(int);
 void * mgos_conf_find_schema_entry(char *, void *);
 double  mgos_conf_value_double(void *, void *);
@@ -163,6 +185,28 @@ const struct mgos_ffi_export ffi_exports[] = {
   {"mg_time", mg_time},
   {"mgos_bind", mgos_bind},
   {"mgos_bitbang_write_bits_js", mgos_bitbang_write_bits_js},
+  {"mgos_bt_gap_get_srdd", mgos_bt_gap_get_srdd},
+  {"mgos_bt_gap_parse_name_js", mgos_bt_gap_parse_name_js},
+  {"mgos_bt_gap_scan_js", mgos_bt_gap_scan_js},
+  {"mgos_bt_gatt_js_get_conn_def", mgos_bt_gatt_js_get_conn_def},
+  {"mgos_bt_gatt_js_get_conn_def", mgos_bt_gatt_js_get_conn_def},
+  {"mgos_bt_gattc_connect_js", mgos_bt_gattc_connect_js},
+  {"mgos_bt_gattc_disconnect", mgos_bt_gattc_disconnect},
+  {"mgos_bt_gattc_discover", mgos_bt_gattc_discover},
+  {"mgos_bt_gattc_js_get_discovery_result_arg_def", mgos_bt_gattc_js_get_discovery_result_arg_def},
+  {"mgos_bt_gattc_js_get_notify_arg_def", mgos_bt_gattc_js_get_notify_arg_def},
+  {"mgos_bt_gattc_js_get_read_result_def", mgos_bt_gattc_js_get_read_result_def},
+  {"mgos_bt_gattc_read", mgos_bt_gattc_read},
+  {"mgos_bt_gattc_subscribe", mgos_bt_gattc_subscribe},
+  {"mgos_bt_gattc_write_js", mgos_bt_gattc_write_js},
+  {"mgos_bt_gatts_js_add_char", mgos_bt_gatts_js_add_char},
+  {"mgos_bt_gatts_js_free_chars", mgos_bt_gatts_js_free_chars},
+  {"mgos_bt_gatts_js_get_notify_mode_arg_def", mgos_bt_gatts_js_get_notify_mode_arg_def},
+  {"mgos_bt_gatts_js_get_read_arg_def", mgos_bt_gatts_js_get_read_arg_def},
+  {"mgos_bt_gatts_js_get_write_arg_def", mgos_bt_gatts_js_get_write_arg_def},
+  {"mgos_bt_gatts_notify_js", mgos_bt_gatts_notify_js},
+  {"mgos_bt_gatts_register_service", mgos_bt_gatts_register_service},
+  {"mgos_bt_gatts_send_resp_data_js", mgos_bt_gatts_send_resp_data_js},
   {"mgos_clear_timer", mgos_clear_timer},
   {"mgos_conf_find_schema_entry", mgos_conf_find_schema_entry},
   {"mgos_conf_value_double", mgos_conf_value_double},
@@ -264,4 +308,4 @@ const struct mgos_ffi_export ffi_exports[] = {
   {"strdup", strdup},
   {"temprature_sens_read", temprature_sens_read},
 };
-const int ffi_exports_cnt = 126;
+const int ffi_exports_cnt = 148;
